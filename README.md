@@ -1,6 +1,14 @@
-# cms-public-storefront
+# cms-public-storefront — minimal starter scaffold
 
-Scaffolded with [`rahman-resources`](https://www.npmjs.com/package/rahman-resources) — Next 16 + React 19 + Convex (self-hosted) + Tailwind 4 + shadcn/ui.
+> ⚠ **Not a catalog template.** This is a bare Next 16 + Convex starter
+> (single landing page, stub schema, ~25 files) kept as an `rr add` base for
+> custom builds. It has **none** of the fleet headless-OS machinery (no
+> `/setup` wizard, admin, update/backup cards, version.json) — for a real
+> deployable template, start from any `template-<slug>` OS repo instead.
+> The old Vercel demo project was deleted 2026-06-05; a preview lives at
+> resource.rahmanef.com/preview/cms-public-storefront.
+
+Scaffolded with [`rahman-resources`](https://www.npmjs.com/package/rahman-resources) — Next 16 + React 19 + Convex + Tailwind 4 + shadcn/ui.
 
 ## Setup
 
@@ -31,7 +39,7 @@ npx rahman-resources add ai-sdk-openrouter .   # feature (npm install)
 
 | | |
 |---|---|
-| Framework | Next.js 16 (App Router + cacheComponents) |
+| Framework | Next.js 16 (App Router) |
 | UI | React 19 + Tailwind 4 + shadcn |
 | Backend | Convex (self-hosted compatible) |
 | Auth | `@convex-dev/auth` (Password provider by default) |
