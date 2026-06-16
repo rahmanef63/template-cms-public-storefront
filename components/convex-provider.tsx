@@ -10,15 +10,14 @@
 // work even when the client hasn't established its WS yet.
 
 import { ConvexAuthProvider } from "@convex-dev/auth/react";
-import { ConvexReactClient } from "convex/react";
+import { ConvexReactClient, ConvexProvider } from "convex/react";
 import { ConvexHttpClient } from "convex/browser";
 import { useEffect, useState, type ReactNode } from "react";
 
 export function ConvexClientProvider({ children }: { children: ReactNode }) {
   const [mounted, setMounted] = useState(false);
   const [convex] = useState(() => {
-    const url = process.env.NEXT_PUBLIC_CONVEX_URL;
-    if (!url) return null;
+    const url = process.env.NEXT_PUBLIC_CONVEX_URL || "https://placeholder.convex.cloud";
     const client = new ConvexReactClient(url);
     const http = new ConvexHttpClient(url);
     const orig = client.action.bind(client);
@@ -32,6 +31,9 @@ export function ConvexClientProvider({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => setMounted(true), []);
-  if (!mounted || !convex) return <>{children}</>;
-  return <ConvexAuthProvider client={convex}>{children}</ConvexAuthProvider>;
+  return (
+    <ConvexProvider client={convex}>
+      {mounted ? <ConvexAuthProvider client={convex}>{children}</ConvexAuthProvider> : null}
+    </ConvexProvider>
+  );
 }
